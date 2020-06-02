@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02-jun-2020 18:47:55 by Hibernate Tools 4.3.1.Final -->
+<hibernate-mapping>
+    <class name="models.Productos" table="productos" catalog="ventas" optimistic-lock="version">
+        <id name="idproducto" type="java.lang.Integer">
+            <column name="IDPRODUCTO" />
+            <generator class="identity" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="50" not-null="true" />
+        </property>
+        <property name="stockactual" type="java.lang.Integer">
+            <column name="STOCKACTUAL" />
+        </property>
+        <property name="stockminimo" type="java.lang.Integer">
+            <column name="STOCKMINIMO" />
+        </property>
+        <property name="pvp" type="java.lang.Integer">
+            <column name="PVP" />
+        </property>
+        <set name="ventases" table="ventas" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUCTO" not-null="true" />
+            </key>
+            <one-to-many class="models.Ventas" />
+        </set>
+    </class>
+</hibernate-mapping>
